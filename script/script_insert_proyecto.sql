@@ -4,20 +4,20 @@ USE GestionHotel;
 -- INSERCIÓN DEL LOTE DE DATOS
 
 -- Insertar datos en la tabla Huesped
-INSERT INTO Huesped (dni, nombre, apellido)
+INSERT INTO Huesped (dni, nombre, apellido, fecha_nacimiento)
 VALUES
-(12345678, 'Juan', 'Pérez'),
-(23456789, 'María', 'González'),
-(34567890, 'Carlos', 'López'),
-(45678901, 'Ana', 'Martínez');
+(12345678, 'Juan', 'Pérez', '20122002'),
+(23456789, 'María', 'González', '25121999'),
+(34567890, 'Carlos', 'López', '24022003'),
+(45678901, 'Ana', 'Martínez', '20122002');
 
 -- Insertar datos en la tabla Reserva
-INSERT INTO Reserva (id_reserva, fechaSalida, dni)
+INSERT INTO Reserva (id_reserva,fecha_entrada,fecha_salida, dni)
 VALUES
-(1,	NULL, 12345678),
-(2, '20241010', 23456789),
-(3, '20241001', 34567890),
-(4, NULL, 45678901);
+(1,	NULL,11335677, 12345678),
+(2, '20241010',22446788, 23456789),
+(3, '20241001',33557889,34567890),
+(4, NULL,44668900,45678901);
 
 -- Insertar datos en la tabla Piso
 INSERT INTO Piso (id_piso, nroPiso) 
@@ -53,6 +53,19 @@ VALUES
 
 -- Insertar datos en la tabla Detalle_reserva
 INSERT INTO Detalle_reserva (id_reserva, id_pago, totalReserva)
+-- Insertar datos calculados en la tabla Detalle_reserva
+INSERT INTO Detalle_reserva (id_reserva, id_pago, total_reserva)
+SELECT 
+    r.id_reserva, 
+    p.id_pago, 
+    DATEDIFF(DAY, r.fecha_entrada, 
+        ISNULL(r.fecha_salida, GETDATE())) * p.importe AS total_reserva
+FROM 
+    Reserva r
+JOIN 
+    Pago p ON p.id_pago = r.id_reserva -- Asumiendo que la reserva y pago están vinculados 1:1
+WHERE 
+    r.fecha_entrada <= ISNULL(r.fecha_salida, GETDATE());
 VALUES
 (1, 1, 500.00),
 (2, 2, 750.00),
