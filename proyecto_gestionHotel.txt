@@ -2,7 +2,7 @@
     
 **Estructura del documento principal:**
 
-# PRESENTACIÓN (Título/Nombre Proyecto)
+# PRESENTACIÓN GESTIÓN HOTEL
 
 **Asignatura**: Bases de Datos I (FaCENA-UNNE)
 
@@ -17,7 +17,9 @@
 
 ### Caso de estudio
 
-Maecenas molestie lacus tincidunt, placerat dolor et, ullamcorper erat. Mauris tortor nisl, ultricies ac scelerisque nec, feugiat in nibh. 
+El caso de estudio se centra en el diseño de una base de datos para gestionar un Hotel y administrar las reservas de habitaciones, ingreso y salida de los huespedes.
+El hotel cuenta con varios pisos, en los cuales hay varias habitaciones. Cada una de las habitaciones tiene su costo, el cual va a variar según el tipo de habitación que sea.
+Un Huesped puede reservar una o mas habitaciones. Para facilitar el pago de las reservas, se aceptan varios tipos de pago (Efectivo, debito, credito)
 
 ### Definición o planteamiento del problema
 
