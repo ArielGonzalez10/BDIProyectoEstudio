@@ -50,6 +50,7 @@ Por lo tanto, surge la necesidad de desarrollar un sistema que permita automatiz
 ### Diccionario de datos
 Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos. 
 
+
 ### Desarrollo TEMA 1 "----"
 
 > Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_1](script/tema01_nombre_tema)
