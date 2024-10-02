@@ -42,24 +42,13 @@ Por lo tanto, surge la necesidad de desarrollar un sistema que permita automatiz
 
 
 ### Diagrama conceptual (opcional)
-Ejemplo usando Live Editor https://mermaid.js.org/ (ejemplo opcional)
-```mermaid
-erDiagram
-CUSTOMER  }|..|{  DELIVERY-ADDRESS  : has
-CUSTOMER  ||--o{  ORDER  : places
-CUSTOMER  ||--o{  INVOICE  : "liable for"
-DELIVERY-ADDRESS  ||--o{  ORDER  : receives
-INVOICE  ||--|{  ORDER  : covers
-ORDER  ||--|{  ORDER-ITEM  : includes
-PRODUCT-CATEGORY  ||--|{  PRODUCT  : contains
-PRODUCT  ||--o{  ORDER-ITEM  : "ordered in"
-```
+
 ### Diagrama relacional
-https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/doc/RelacionalHotel.jpeg
+![diagrama_relacional](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/doc/RelacionalHotel.jpeg)
 
 
 ### Diccionario de datos
-https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/doc/Diccionario%20de%20datos%20de%20Gesti%C3%B3n%20de%20hoteles.pdf
+Acceso al documento [PDF](doc/Diccionario de datos de Gestión de hoteles.pdf) del diccionario de datos. 
 
 ### Desarrollo TEMA 1 "----"
 
