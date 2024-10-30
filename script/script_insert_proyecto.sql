@@ -1,4 +1,4 @@
--- SCRIPT "nombre del proyecto"
+-- SCRIPT "Gestion de Hotel"
 USE gestion_hotel;
 -- INSERCIÓN DEL LOTE DE DATOS
 
