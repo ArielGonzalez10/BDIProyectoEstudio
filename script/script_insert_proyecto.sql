@@ -1,26 +1,25 @@
--- SCRIPT "nombre del proyecto"
-USE GestionHotel;
-
+-- SCRIPT "Gestion de Hotel"
+USE gestion_hotel;
 -- INSERCIÓN DEL LOTE DE DATOS
 
 -- Insertar datos en la tabla Huesped
 INSERT INTO Huesped (dni, nombre, apellido, fecha_nacimiento)
 VALUES
-(12345678, 'Juan', 'Pérez', '20122002'),
-(23456789, 'María', 'González', '25121999'),
-(34567890, 'Carlos', 'López', '24022003'),
-(45678901, 'Ana', 'Martínez', '20122002');
+(12345678, 'Juan', 'Pérez', '1985-04-23'),
+(23456789, 'María', 'González', '1990-08-12'),
+(34567890, 'Carlos', 'López', '1983-02-17'),
+(45678901, 'Ana', 'Martínez', '1995-11-30');
 
 -- Insertar datos en la tabla Reserva
-INSERT INTO Reserva (id_reserva,fecha_entrada,fecha_salida, dni)
+INSERT INTO Reserva (id_reserva, fecha_entrada, fecha_salida, dni)
 VALUES
-(1,	NULL,11335677, 12345678),
-(2, '20241010',22446788, 23456789),
-(3, '20241001',33557889,34567890),
-(4, NULL,44668900,45678901);
+(1, '2024-10-01', NULL, 12345678),
+(2, '2024-10-05', '2024-10-10', 23456789),
+(3, '2024-10-01', '2024-10-05', 34567890),
+(4, '2024-10-01', NULL, 45678901);
 
 -- Insertar datos en la tabla Piso
-INSERT INTO Piso (id_piso, nroPiso) 
+INSERT INTO Piso (id_piso, nro_piso) 
 VALUES
 (1, 1),
 (2, 2),
@@ -36,55 +35,51 @@ VALUES
 (4, 750.00);
 
 -- Insertar datos en la tabla Metodo_pago
-INSERT INTO Metodo_pago (id_metodoPago, tipo, id_pago)
+INSERT INTO Metodo_pago (id_metodo, tipo_metodo, id_pago)
 VALUES
 (1, 'Debito', 1),
 (2, 'Credito', 4),
 (3, 'Efectivo', 2),
 (4, 'Efectivo', 3);
 
--- Insertar datos en la tabla Habitacion
-INSERT INTO Habitacion (id_habitacion, tipoHabitacion, costo, id_piso)
+-- Insertar datos en la tabla Tipo_habitacion
+INSERT INTO Tipo_habitacion (id_tipo_habitacion, nombre_tipo, costo)
 VALUES
-(1, 'Simple' , 100.00, 1),
-(2, 'Doble', 150.00, 1),
-(3, 'Suit', 200.00, 2),
-(4, 'Simple', 100.00, 3);
+(1, 'Simple', 100.00),
+(2, 'Doble', 150.00),
+(3, 'Triple', 200.00);
+
+-- Insertar datos en la tabla Habitacion
+INSERT INTO Habitacion (nro_habitacion, id_tipo_habitacion, id_piso)
+VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 2),
+(4, 1, 3);
 
 -- Insertar datos en la tabla Detalle_reserva
-INSERT INTO Detalle_reserva (id_reserva, id_pago, totalReserva)
--- Insertar datos calculados en la tabla Detalle_reserva
 INSERT INTO Detalle_reserva (id_reserva, id_pago, total_reserva)
-SELECT 
-    r.id_reserva, 
-    p.id_pago, 
-    DATEDIFF(DAY, r.fecha_entrada, 
-        ISNULL(r.fecha_salida, GETDATE())) * p.importe AS total_reserva
-FROM 
-    Reserva r
-JOIN 
-    Pago p ON p.id_pago = r.id_reserva -- Asumiendo que la reserva y pago están vinculados 1:1
-WHERE 
-    r.fecha_entrada <= ISNULL(r.fecha_salida, GETDATE());
 VALUES
 (1, 1, 500.00),
 (2, 2, 750.00),
 (3, 3, 600.00),
 (4, 4, 750.00);
 
--- Insertar datos en la tabla Detalle_habitacion
-INSERT INTO Detalle_habitacion (id_habitacion, id_reserva)
+-- Insertar datos en la tabla Habitacion_reserva
+INSERT INTO Habitacion_reserva (nro_habitacion, id_reserva)
 VALUES
 (1, 1),
 (2, 2),
 (3, 3),
 (4, 4);
 
+-- Selección de datos
 SELECT * FROM Huesped;
 SELECT * FROM Reserva;
 SELECT * FROM Piso;
 SELECT * FROM Pago;
 SELECT * FROM Metodo_pago;
+SELECT * FROM Tipo_habitacion;
 SELECT * FROM Habitacion;
 SELECT * FROM Detalle_reserva;
-SELECT * FROM Detalle_habitacion;
+SELECT * FROM Habitacion_reserva;
