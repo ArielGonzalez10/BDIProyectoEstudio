@@ -96,6 +96,6 @@ CREATE TABLE Detalle_reserva
   id_pago INT NOT NULL,
   id_reserva INT NOT NULL,
   CONSTRAINT PK_id_pago_id_reserva PRIMARY KEY (id_pago, id_reserva),
-  CONSTRAINT FK_id_pago FOREIGN KEY (id_pago) REFERENCES Pago(id_pago),
-  CONSTRAINT FK_id_reserva FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva)
+  CONSTRAINT FK_id_pago_detalle FOREIGN KEY (id_pago) REFERENCES Pago(id_pago),
+  CONSTRAINT FK_id_reserva_detalle FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva)
 );
