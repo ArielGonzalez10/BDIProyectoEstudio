@@ -57,7 +57,7 @@ CREATE TABLE Reserva
   dni INT NOT NULL,
   CONSTRAINT PK_reserva PRIMARY KEY (id_reserva),
   CONSTRAINT FK_huesped_reserva FOREIGN KEY (dni) REFERENCES Huesped(dni),
-  CONSTRAINT CK_fecha CHECK (fecha_salida IS NULL OR fecha_entrada <= fecha_salida) -- La fecha de salida debe ser posterior o igual a la fecha de entrada
+  CONSTRAINT CK_fecha CHECK (fecha_salida IS NULL OR fecha_Entrada <= fecha_Salida) -- La fecha de salida debe ser posterior o igual a la fecha de entrada
 );
 
 -- Tabla Pago
