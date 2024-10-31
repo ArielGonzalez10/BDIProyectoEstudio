@@ -43,11 +43,17 @@ Usuarios de bases de datos: Los inicios de sesión conceden acceso a una base de
 Roles fijos de bases de datos: Son un conjunto de roles preconfigurados que proporcionan un práctico grupo de permisos a nivel de bases de datos. Se pueden agregar usuarios de base de datos y roles de base de datos definidos por el usuario a los roles fijos de bases de datos mediante la instrucción ALTER ROLE … ADD MEMBER.
 
 Roles de base de datos definidos por el usuario: Los usuarios con el permiso CREATE ROLE pueden crear nuevos roles de bases de datos definidos por el usuario para representar grupos de usuarios con permisos comunes. Normalmente, los permisos se conceden o deniegan a todo el rol, lo que simplifica la administración y supervisión de permisos. Se pueden agregar usuarios de bases de datos a los roles de base de datos mediante la instrucción ALTER ROLE… ADD MEMBER.
+
 Permisos: Cada elemento protegible tiene permisos asociados que se pueden conceder a las entidades de seguridad. Los permisos se administran en el nivel del servidor asignados a los inicios de sesión y roles de servidor, y en el nivel de base de datos asignados a usuarios de base de datos y roles de base de datos.
+
 El formato para los permisos es: AUTHORIZATION PERMISSION ON SECURABLE::NAME TO PRINCIPAL;
+
 Donde Authorization debe ser Grant el cual concede permisos,Deny que niega permisos o Revoke el cual quita permisos.
+
 Permission establece las acciones permitidas o prohibidas como por ej: SELECT,UPDATE,etc.
+
 Principal es la entidad de seguridad que recibe o pierde el permiso
+
 On securable: : name es el tipo de elemento protegible (servidor, base de datos) y su nombre ** 
 
 
