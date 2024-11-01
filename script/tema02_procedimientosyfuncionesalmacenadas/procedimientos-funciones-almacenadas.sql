@@ -74,7 +74,7 @@ EXEC sp_borrar_huesped @dni = 23456789;
 --	Obtener edad del huesped
 CREATE FUNCTION fn_obtener_edad
 		(@dni INT)
-RETURNS INT --devuelve edad del huesped
+RETURNS INT
 AS
 BEGIN
     DECLARE @edad INT;
@@ -86,13 +86,13 @@ END;
 --	Calcular total de pagos
 CREATE FUNCTION fn_total_pagos
     (@dni INT)
-RETURNS FLOAT --devuelve el total en decimal
+RETURNS FLOAT
 AS
 BEGIN
     DECLARE @total FLOAT;
     SELECT @total = SUM(importe) FROM Pago
-    JOIN Detalle_reserva ON Pago.id_pago = Detalle_reserva.id_pago
-    JOIN Reserva ON Detalle_reserva.id_reserva = Reserva.id_reserva
+    INNER JOIN Detalle_reserva ON Pago.id_pago = Detalle_reserva.id_pago
+    INNER JOIN Reserva ON Detalle_reserva.id_reserva = Reserva.id_reserva
     WHERE Reserva.dni = @dni;
     RETURN @total;
 END;
@@ -106,6 +106,28 @@ BEGIN
     SELECT @count = COUNT(*) FROM Huesped;
     RETURN @count;
 END;
+
+-- Lee la reserva
+CREATE FUNCTION fn_obtener_reserva
+	( @id_reserva INT )
+RETURNS TABLE
+AS
+RETURN (
+    SELECT id_reserva,fecha_entrada,fecha_salida,dni
+    FROM Reserva
+    WHERE id_reserva = @id_reserva
+);
+
+-- Lee el detalle de la reserva
+CREATE FUNCTION fn_obtener_detalle_reserva
+	( @id_reserva INT )
+RETURNS TABLE
+AS
+RETURN (
+    SELECT id_reserva,id_pago,total_reserva
+    FROM Detalle_reserva
+    WHERE id_reserva = @id_reserva
+);
 
 
 --Prueba de consultas
@@ -124,6 +146,18 @@ SELECT dbo.fn_total_pagos(45678901) AS TotalPagos;
 --	Total de huespedes
 SELECT dbo.fn_contar_huespedes() AS TotalHuespedes;
 
+--	Leer reserva
+SELECT * FROM fn_obtener_reserva(1);
+SELECT * FROM fn_obtener_reserva(2);
+SELECT * FROM fn_obtener_reserva(3);
+SELECT * FROM fn_obtener_reserva(4);
+
+--	Leer detalle de la reserva
+SELECT * FROM fn_obtener_detalle_reserva(1);
+SELECT * FROM fn_obtener_detalle_reserva(2);
+SELECT * FROM fn_obtener_detalle_reserva(3);
+SELECT * FROM fn_obtener_detalle_reserva(4);
+
 
 --Comparacion de eficiencia
 SET STATISTICS TIME ON; -- Tiempo de ejecución
@@ -137,8 +171,8 @@ EXEC sp_insertar_huesped @dni = 43215678,
 						@nombre = 'Luis',
 						@apellido = 'Ramirez',
 						@fecha_nacimiento = '1999-04-23';
-/*
-		RESULTADO DE LA EJECUCION
+/*		RESULTADO DE LA EJECUCION
+
 SQL Server parse and compile time: 
    CPU time = 2 ms, elapsed time = 2 ms.
 SQL Server parse and compile time: 
