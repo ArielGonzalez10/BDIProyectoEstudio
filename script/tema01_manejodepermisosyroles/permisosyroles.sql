@@ -32,3 +32,25 @@ CREATE USER Usuario FOR LOGIN usuarioSesion;
 --ASIGNACION DE ROLES
 ALTER ROLE rolAdministrador ADD MEMBER Administrador;
 ALTER ROLE rolUsuario ADD MEMBER Usuario;
+
+--Ejecucion de funciones y procedimientos
+--Insert con sentencia sql sobre la tabla del procedimiento con ambos usuarios
+EXECUTE AS USER = 'Administrador';
+INSERT INTO Huesped VALUES(43789123,'Ariel','Gonzalez','10-05-2000');
+REVERT;
+--Resultado de ejecución a traves de administrador: Se inserto correctamente
+
+EXECUTE AS USER = 'Usuario';
+INSERT INTO Huesped VALUES(45324618,'Marcos','Olmedo','20-10-2012');
+REVERT;
+--Resultado de ejecucion a traves de usuario: Falló, ya que usuario no tiene permitido hacer inserts
+
+--ARREGLAR ESTO
+EXECUTE AS USER = 'Administrador';
+EXECUTE sp_borrar_huesped @dni = 43789123;
+REVERT;
+--Resultado de ejecución a traves de administrador: 
+
+EXECUTE AS USER = 'Usuario';
+INSERT INTO Huesped VALUES(45324618,'Marcos','Olmedo','20-10-2012');
+REVERT;
