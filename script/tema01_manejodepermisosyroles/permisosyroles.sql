@@ -64,21 +64,32 @@ REVERT;
 EXECUTE AS USER = 'Usuario';
 SELECT * FROM Reserva;
 REVERT;
---Detalle de la ejecución: Pasó
+--Detalle de la ejecución: Pasó ya que tiene permiso para leer esta tabla
 
 --Obtener los datos de la reserva como administrador
 EXECUTE AS USER = 'Administrador';
 SELECT * FROM Reserva;
 REVERT;
---Detalle de la ejecución: Pasó
+--Detalle de la ejecución: Pasó ya que tiene permisos de lectura
 
 --Obtener los datos de los huesped como usuario
 EXECUTE AS USER = 'Usuario';
 SELECT * FROM Huesped;
 REVERT;
---Detalle de la ejecución: Falló, porque no tiene permiso para obtener los datos de esta tabla
+--Detalle de la ejecución: Falló, porque no tiene permiso leer esta tabla
 
 EXECUTE AS USER = 'Administrador';
 SELECT * FROM Huesped;
 REVERT;
---Detalle de la ejecución: Paso
+--Detalle de la ejecución: Paso ya que tiene permisos de lectura
+
+--Modificar un huesped como administrador
+EXECUTE AS USER = 'Administrador';
+EXECUTE sp_modificar_huesped @dni = 43789123, @nuevo_nombre = 'Micaela', @nuevo_apellido = 'Fernandez', @nueva_fecha_nacimiento = '2000-03-10';
+REVERT;
+
+--Modificar un huesped como usuario
+EXECUTE AS USER = 'Usuario';
+EXECUTE sp_modificar_huesped @dni = 43789123, @nuevo_nombre = 'Juana', @nuevo_apellido = 'Marcori', @nueva_fecha_nacimiento = '2000-03-10';
+REVERT;
+--Resultado de la ejecución: Fallo debido a que usuario no tiene los permisos de modificacion
