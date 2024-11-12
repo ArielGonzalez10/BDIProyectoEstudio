@@ -57,9 +57,77 @@ Principal es la entidad de seguridad que recibe o pierde el permiso
 On securable: : name es el tipo de elemento protegible (servidor, base de datos) y su nombre ** 
 
 
-**TEMA 2 " ----- "** 
+**TEMA 2 Procedimientos y funciones almacenadas
+            Procedimientos almacenados (Stored Procedures):
+Son conjuntos de instrucciones T-SQL predefinidos que se almacenan y ejecutan en el servidor de base de datos. Están diseñados para realizar una serie de operaciones de base de datos, como consultas, modificaciones o manipulaciones de datos, sin necesidad de que el cliente envíe varias consultas de manera explícita.
+
+    Creación y Gestión de Procedimientos Almacenados
+Crear Procedimiento: (CREATE PROCEDURE) Los procedimientos pueden aceptar parámetros de entrada y salida.
+Modificar Procedimiento: (ALTER PROCEDURE) se utiliza para modificar un procedimiento existente.
+Eliminar Procedimiento: (DROP PROCEDURE) se puede eliminar un procedimiento almacenado.
+
+    Características Clave de los Procedimientos Almacenados
+Operaciones CRUD: Los procedimientos almacenados pueden ejecutar instrucciones de INSERT, UPDATE, DELETE y SELECT sobre las tablas.
+Manejo de Transacciones: Los procedimientos almacenados pueden incluir transacciones mediante BEGIN TRANSACTION, COMMIT y ROLLBACK, lo que permite controlar la consistencia de las operaciones de múltiples tablas.
+Llamadas a Otros Procedimientos: Es posible invocar otros procedimientos dentro de un procedimiento almacenado, lo que mejora la modularidad y reutilización del código.
+Valor de Estado: Los procedimientos pueden devolver un código de estado o un mensaje de error para indicar si la operación fue exitosa o si hubo fallos.
+
+    Tipos de Procedimientos Almacenados:
+Definidos por el Usuario: Creación personalizada por los usuarios. Pueden ser locales o globales.
+Temporales: Existentes solo durante la sesión. Se almacenan en tempdb y pueden ser locales o globales.
+Procedimientos del Sistema: Procedimientos predefinidos en SQL Server para tareas administrativas, como mantenimiento o programación de trabajos.
+
+    Ventajas de Usar Procedimientos Almacenados
+Reducción del Tráfico de Red: Al ejecutar las instrucciones directamente en el servidor, se reduce el número de rondas de comunicación entre el cliente-servidor.
+Seguridad Mejorada: Los procedimientos almacenados permiten controlar el acceso a los datos, limitando las operaciones que un usuario puede realizar, y evitando que los usuarios ejecuten directamente consultas.
+Mejor Rendimiento: Mejoran el rendimiento porque las consultas complejas se procesan en el servidor, evitando la sobrecarga de red.
+
+
+            Funciones almacenadas (Stored Functions):
+Son bloques de código que devuelven un valor único o un conjunto de valores. Son útiles para realizar cálculos o evaluaciones dentro de consultas SQL.
+
+    Características Clave de las Funciones Almacenadas
+Valor de Retorno: Las funciones siempre devuelven un valor, que puede ser un valor escalar o una tabla.
+No Modifican Datos: Las funciones no pueden modificar los datos directamente. No pueden realizar operaciones INSERT, UPDATE ni DELETE.
+Uso en Consultas: Las funciones se utilizan dentro de las consultas para realizar cálculos o para evaluar condiciones lógicas.
+
+    Tipos de Funciones Almacenadas:
+Funciones Escalares: Devuelven un solo valor.
+Funciones de Tabla: Devuelven una tabla que puede ser usada dentro de la consulta SQL como una tabla derivada.
+
+
+**TEMA 3 Optimización de consultas a traves indices 
+El ejercicio de optimización de búsqueda mediante la creación y uso de índices en la tabla Huesped1 nos permitió observar y comparar
+ el impacto de los índices en los tiempos de respuesta y en los planes de ejecución utilizados por el motor de la base de datos.
+
+Carga Masiva de Datos: La carga masiva de un millón de registros en la tabla Huesped1 sin índices fue exitosa, 
+y proporcionó una base de datos significativa para realizar las pruebas de optimización.
+
+Consulta Sin Índices: La primera consulta de búsqueda por el rango de fechas 2002-01-01 a 2004-12-01 se ejecutó 
+sin la presencia de índices. 
+El plan de ejecución y los tiempos de respuesta registrados mostraron un rendimiento básico sin optimización.
+
+Índice Agrupado: La creación de un índice agrupado (clustered index) sobre la columna fecha_nacimiento permitió mejorar 
+significativamente el rendimiento de la consulta. 
+Los tiempos de respuesta fueron más rápidos y el plan de ejecución mostró un uso eficiente del índice agrupado para acceder a los datos.
+
+Índice No Agrupado con Columnas Incluidas: La definición de un índice no agrupado (non-clustered index) sobre 
+la columna fecha_nacimiento con las columnas dni y nombre incluidas, permitió una optimización adicional. 
+El plan de ejecución y los tiempos de respuesta indicaron que el uso de columnas incluidas puede ayudar a reducir 
+la cantidad de acceso a datos necesarios para satisfacer la consulta.
+
+En conclusión, el uso de índices, tanto agrupados como no agrupados con columnas incluidas, demostró ser una estrategia 
+efectiva para mejorar el rendimiento de las consultas en la base de datos. 
+Este ejercicio destaca la importancia de seleccionar y definir adecuadamente los índices para optimizar las operaciones de
+búsqueda y acceso a los datos.
+
+
+**TEMA 4 Vistas y vistas indexadas
+
+
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA 
+
 
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
@@ -80,11 +148,17 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 > Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_1](script/tema01_manejodepermisosyroles)
 
-### Desarrollo TEMA 2 "----"
+### Desarrollo TEMA 2 "Procedimientos y funciones almacenadas"
 
 > Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_2](script/tema02_procedimientosyfuncionesalmacenadas/)
 
-... 
+### Desarrollo TEMA 3 "Optimización de consultas a traves indices"
+
+> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_3](script/tema02_procedimientosyfuncionesalmacenadas/)
+
+### Desarrollo TEMA 4 "Vistas y vistas indexadas"
+
+> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_4](script/tema02_procedimientosyfuncionesalmacenadas/)
 
 
 ## CAPÍTULO V: CONCLUSIONES

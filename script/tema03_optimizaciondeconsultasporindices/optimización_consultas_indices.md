@@ -1,4 +1,4 @@
-optimización de consultas a traves indices 
+Optimización de consultas a traves indices :
 El ejercicio de optimización de búsqueda mediante la creación y uso de índices en la tabla Huesped1 nos permitió observar y comparar
  el impacto de los índices en los tiempos de respuesta y en los planes de ejecución utilizados por el motor de la base de datos.
 
