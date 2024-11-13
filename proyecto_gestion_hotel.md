@@ -137,12 +137,47 @@ Las vistas indexadas pueden mejorar significativamente el rendimiento de las con
 
 
 ## CAPÍTULO III: METODOLOGÍA SEGUIDA 
+#Análisis de Requerimientos
+Primero, revisamos todo lo que el sistema necesita para manejar reservas, pagos, y detalles de los huéspedes. 
 
+#Diseño de la Base de Datos
+Creamos los diagramas que muestran cómo se relacionan las entidades en la base de datos, como Huésped, Reserva, Pago, y Habitación. En esta etapa, definimos cada tabla con sus claves primarias y foráneas para asegurar que los datos se vinculen de forma correcta y eficiente.
+
+#Diccionario de Datos
+Documentamos cada tabla y sus columnas en un diccionario de datos, explicando su tipo y función. También describimos las relaciones entre las tablas, incluyendo todas las claves externas.
+
+#Creación de la Base de Datos en SQL Server
+Implementamos la base de datos en SQL Server, creando las tablas y configurando las claves y restricciones necesarias para mantener la integridad de los datos. Realizamos una carga inicial de datos para pruebas, especialmente en la tabla de huéspedes, con alrededor de un millón de registros.
+
+#Procedimientos y Funciones Almacenadas
+Desarrollamos procedimientos y funciones para manejar las operaciones de crear, leer, actualizar y eliminar. Esto ayuda a procesar los datos de manera más eficiente y facilita las operaciones comunes sin repetir código.
+
+#Optimización de Consultas con Índices
+Para que las consultas sean más rápidas, agregamos índices en columnas clave, tanto agrupados como no agrupados. Esto reduce el tiempo de respuesta, especialmente en consultas SELECT, ya que permite acceder directamente a los datos relevantes sin revisar todas las filas.
+
+#Creación de Vistas y Vistas Indexadas
+Definimos vistas para simplificar las consultas frecuentes y vistas indexadas para mejorar el acceso a datos específicos. Las vistas ayudan a hacer las consultas más fáciles y rápidas, como ver el historial de reservas de un huésped o los pagos pendientes. Probamos el rendimiento de estas vistas para asegurarnos de que realmente mejoran la velocidad de acceso.
 
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
+**ROLES Y PERMISOS**
+#CREACION DE LOS ROLES, INICIOS DE SESION E USUARIOS
+![Creacion](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/creación.jpg)
 
+#ASIGNACIÓN DE PERMISOS Y ASIGNACION DE USUARIOS A LOS ROLES
+![Asignaciones](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/asignaciones.jpg)
 
+#INICIO DE SESION DEL ADMINISTRADOR
+![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionAdmin.jpg)
+
+#INICIO DE SESION DEL USUARIO
+![EjecucionesUsuario](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionUsuario.jpg)
+
+#EJECUCION DE LAS TAREAS COMO ADMINISTRADOR
+![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/ejecucionesAdministrador.jpg)
+
+#EJECUCION DE LAS TAREAS COMO USUARIO
+![EjecucionesUsuario](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/ejecucionesUsuario.jpg)
 
 ### Diagrama conceptual (opcional)
 
@@ -164,11 +199,11 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 
 ### Desarrollo TEMA 3 "Optimización de consultas a traves indices"
 
-> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_3](script/tema02_procedimientosyfuncionesalmacenadas/)
+> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_3](script/tema03_optimizaciondeconsultasporindices/)
 
 ### Desarrollo TEMA 4 "Vistas y vistas indexadas"
 
-> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_4](script/tema02_procedimientosyfuncionesalmacenadas/)
+> Acceder a la siguiente carpeta para la descripción completa del tema [scripts-> tema_4](script/tema04_vistasyvistasindexadas/)
 
 
 ## CAPÍTULO V: CONCLUSIONES
@@ -176,14 +211,17 @@ Acceso al documento [PDF](doc/diccionario_datos.pdf) del diccionario de datos.
 En conclusión, el uso de **índices**, tanto agrupados como no agrupados con columnas incluidas, demostró ser una estrategia efectiva para mejorar el rendimiento de las consultas en la base de datos. 
 Este ejercicio destaca la importancia de seleccionar y definir adecuadamente los índices para optimizar las operaciones de búsqueda y acceso a los datos.
 
-
+Para la asignación de permisos a distintos usuarios de bases de datos, primero se debe crear inicios de sesión para el servidor de bases de datos, luego crear las cuentas de usuario, en nuestro caso, una cuenta de Administrador y una de Usuario, asignamos estas cuentas de usuario a los inicios de sesión.
+Luego creamos los roles y le asignamos permisos, para que los usuarios puedan ocupar estos permisos se deben añadir las cuentas de usuarios a los roles.
 
 
 ## BIBLIOGRAFÍA DE CONSULTA
+1. Microsoft. (s.f.). Roles a nivel de base de datos. Recuperado de https://learn.microsoft.com/es-es/sql/relational-databases/security/authentication-access/database-level-roles?view=sql-server-ver16
 
- 1. List item
- 2. List item
- 3. List item
- 4. List item
- 5. List item
+2. Microsoft. (s.f.). Usuarios de base de datos contenidos: Hacer que tu base de datos sea portátil. Recuperado de https://learn.microsoft.com/es-es/sql/relational-databases/security/contained-database-users-making-your-database-portable?view=sql-server-ver16
 
+3. Microsoft. (s.f.). Permisos (motor de base de datos). Recuperado de https://learn.microsoft.com/es-es/sql/relational-databases/security/permissions-database-engine?view=sql-server-ver16
+
+4. Begg, C. E., & Connolly, T. M. (2005). Sistemas de bases de datos: un enfoque práctico para diseño, implementación y gestión. España: Pearson Educación.
+
+5. Microsoft. (s.f.). Documentación técnica de SQL Server. Recuperado de https://learn.microsoft.com/es-es/sql/sql-server/?view=sql-server-ver16
