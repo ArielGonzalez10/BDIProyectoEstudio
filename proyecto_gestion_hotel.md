@@ -161,22 +161,22 @@ Definimos vistas para simplificar las consultas frecuentes y vistas indexadas pa
 
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 **ROLES Y PERMISOS**
-#CREACION DE LOS ROLES, INICIOS DE SESION E USUARIOS
-![Creacion](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/creación.jpg)
+##  CREACION DE LOS ROLES, INICIOS DE SESION E USUARIOS <br>
+![Creacion](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/creación.jpg) <br>
 
-#ASIGNACIÓN DE PERMISOS Y ASIGNACION DE USUARIOS A LOS ROLES
-![Asignaciones](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/asignaciones.jpg)
+##  ASIGNACIÓN DE PERMISOS Y ASIGNACION DE USUARIOS A LOS ROLES <br>
+![Asignaciones](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/asignaciones.jpg) <br>
 
-#INICIO DE SESION DEL ADMINISTRADOR
-![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionAdmin.jpg)
+##  INICIO DE SESION DEL ADMINISTRADOR <br>
+![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionAdmin.jpg) <br>
 
-#INICIO DE SESION DEL USUARIO
-![EjecucionesUsuario](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionUsuario.jpg)
+##  INICIO DE SESION DEL USUARIO <br>
+![EjecucionesUsuario](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/inicioSesionUsuario.jpg) <br>
 
-#EJECUCION DE LAS TAREAS COMO ADMINISTRADOR
-![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/ejecucionesAdministrador.jpg)
+##  EJECUCION DE LAS TAREAS COMO ADMINISTRADOR <br>
+![EjecucionesAdmin](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/ejecucionesAdministrador.jpg) <br>
 
-#EJECUCION DE LAS TAREAS COMO USUARIO
+##  EJECUCION DE LAS TAREAS COMO USUARIO <br>
 ![EjecucionesUsuario](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/ejecucionesUsuario.jpg)
 
 ### Diagrama conceptual (opcional)
