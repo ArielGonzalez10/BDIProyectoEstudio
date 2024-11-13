@@ -1,28 +1,28 @@
 --		Procedimientos y funciones almacenadas
 use gestion_hotel;
 
---Procedimientos almacenados (Stored Procedure) sp_
+--Procedimientos almacenados (Stored Procedure) usamos para declarar sp_
 --	INSERTAR huesped
 CREATE PROCEDURE sp_insertar_huesped
-		@dni INT,
+		@dni INT,	--	El/los parametro/s seguido del tipo de dato
 		@nombre VARCHAR(30),
 		@apellido VARCHAR(30),
 		@fecha_nacimiento DATE
 AS
-BEGIN
-    INSERT INTO Huesped (dni, nombre, apellido, fecha_nacimiento)
+BEGIN	--	Manejo de transacciones
+    INSERT INTO Huesped (dni, nombre, apellido, fecha_nacimiento)	--	Operaciones CRUD
     VALUES (@dni, @nombre, @apellido, @fecha_nacimiento);
 END;
 
 --	MODIFICAR huesped
 CREATE PROCEDURE sp_modificar_huesped
-		@dni INT,
+		@dni INT,	--	El/los parametro/s seguido del tipo de dato
 		@nuevo_nombre VARCHAR(30),
 		@nuevo_apellido VARCHAR(30),
 		@nueva_fecha_nacimiento DATE
 AS
-BEGIN
-    UPDATE Huesped
+BEGIN	--	Manejo de transacciones
+    UPDATE Huesped	--	Operaciones CRUD
     SET nombre = @nuevo_nombre,
         apellido = @nuevo_apellido,
         fecha_nacimiento = @nueva_fecha_nacimiento
@@ -49,6 +49,7 @@ VALUES
 
 
 --Invocacion de los procedimientos
+--	Para invocar los procedimientos usamos EXEC/EXECUTE
 EXEC sp_insertar_huesped @dni = 12345678,
 						@nombre = 'Juan',
 						@apellido = 'Pérez',
@@ -70,14 +71,14 @@ EXEC sp_modificar_huesped @dni = 12345678,
 EXEC sp_borrar_huesped @dni = 23456789;
 
 
---Funciones almacenadas fn_
+--Funciones almacenadas (Stored Functions) usamos para declarar fn_ 
 --	Obtener edad del huesped
 CREATE FUNCTION fn_obtener_edad
-		(@dni INT)
-RETURNS INT
+		(@dni INT)	--	El parametro seguido del tipo de dato
+RETURNS INT	--	El tipo de valor que retorna
 AS
 BEGIN
-    DECLARE @edad INT;
+    DECLARE @edad INT;	--	Realiza cálculos
     SELECT @edad = DATEDIFF(YEAR, fecha_nacimiento, GETDATE()) FROM Huesped
     WHERE dni = @dni;
     RETURN @edad;
@@ -85,11 +86,11 @@ END;
 
 --	Calcular total de pagos
 CREATE FUNCTION fn_total_pagos
-    (@dni INT)
-RETURNS FLOAT
+    (@dni INT)	--	El parametro seguido del tipo de dato
+RETURNS FLOAT	--	El tipo de valor que retorna
 AS
 BEGIN
-    DECLARE @total FLOAT;
+    DECLARE @total FLOAT;	--	Realiza cálculos
     SELECT @total = SUM(importe) FROM Pago
     INNER JOIN Detalle_reserva ON Pago.id_pago = Detalle_reserva.id_pago
     INNER JOIN Reserva ON Detalle_reserva.id_reserva = Reserva.id_reserva
@@ -130,7 +131,8 @@ RETURN (
 );
 
 
---Prueba de consultas
+--Prueba de consultas de Funciones Almacenadas
+--	Mediante un select seguido del nombre de la funcion con el parametro
 --	Calcular edad
 SELECT dbo.fn_obtener_edad(12345678) AS EdadHuesped;
 SELECT dbo.fn_obtener_edad(23456789) AS EdadHuesped;

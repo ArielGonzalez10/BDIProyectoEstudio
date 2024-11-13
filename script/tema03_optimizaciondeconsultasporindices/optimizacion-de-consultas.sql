@@ -1,4 +1,4 @@
-												--Optimización de busqueda a traves de índices.
+--Optimización de busqueda a traves de índices.
 USE gestion_hotel;
 SELECT *
 INTO Huesped1
@@ -8,8 +8,8 @@ FROM Huesped;
 Hacerlo con un script para poder automatizarlo.*/
 
 -- Insertar 100000 registros en la tabla Huesped
-DECLARE @i INT = 1;
-WHILE @i <= 1000000
+DECLARE @i INT = 1;	--	Declaramos la variable i
+WHILE @i <= 1000000	--	Bucle para la carga
 BEGIN
     INSERT INTO Huesped1 (dni, nombre, apellido, fecha_nacimiento)
     VALUES (
@@ -19,7 +19,7 @@ BEGIN
         DATEADD(YEAR, -20, GETDATE())  -- Fecha de nacimiento (20 años atrás)
     );
 
-    SET @i = @i + 1;
+    SET @i = @i + 1;	--	Incremento del contador
 END;
 
 SELECT * 
@@ -53,12 +53,14 @@ WHERE fecha_nacimiento BETWEEN '2002-01-01' AND '2004-12-01';
 SET STATISTICS TIME OFF;
 SET STATISTICS PROFILE OFF;
 
-/*Borrar indice creado*/
+/*	Borrar indice creado	*/
 DROP INDEX  idx_fecha_nacimiento ON Huesped1;
 
-/*Definir otro índice agrupado sobre la columna fecha pero que además incluya las columnas seleccionadas y repetir la consulta anterior. 
-Registrar el plan de ejecución utilizado por el motor y los tiempos de respuesta.*/
+/*	Definimos un índice no agrupado (no usamos la clausula CLUSTERED) sobre la columna fecha pero que además
+incluya las columnas seleccionadas y repetir la consulta anterior. 
+Registrar el plan de ejecución utilizado por el motor y los tiempos de respuesta.	*/
 
+--	La clave del indice fecha_nacimiento
 CREATE INDEX idx_fecha_nacimiento ON Huesped1 (fecha_nacimiento) INCLUDE (dni, nombre);
 
 SET STATISTICS TIME ON;

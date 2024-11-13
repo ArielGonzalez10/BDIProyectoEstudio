@@ -7,6 +7,7 @@ CREATE ROLE rolAdministrador;
 CREATE ROLE rolUsuario;
 
 --Se asigna permisos de administrador al rol Administrador
+--	GRANT concede permisos seguido de las acciones permitidas
 GRANT ALTER,DELETE,INSERT,SELECT,UPDATE TO rolAdministrador;
 GRANT EXECUTE ON sp_insertar_huesped TO rolAdministrador;
 GRANT EXECUTE ON sp_modificar_huesped TO rolAdministrador;
@@ -34,26 +35,26 @@ CREATE USER Usuario FOR LOGIN usuarioSesion;
 ALTER ROLE rolAdministrador ADD MEMBER Administrador;
 ALTER ROLE rolUsuario ADD MEMBER Usuario;
 
---Ejecucion de funciones y procedimientos
+--Para ejecutar las funciones y procedimientos almacenados usamos la clausula EXECUTE/EXEC
 --Insert con sentencia sql sobre la tabla del procedimiento con ambos usuarios
 EXECUTE AS USER = 'Administrador';
 INSERT INTO Huesped VALUES(43789123,'Ariel','Gonzalez','10-05-2000');
 SELECT * FROM Huesped WHERE Huesped.dni = 43789123;
 REVERT;
---Resultado de ejecución a traves de administrador: Se inserto correctamente
+--Resultado de ejecución (administrador): Se inserto correctamente
 
 --Insertar un huesped como usuario
 EXECUTE AS USER = 'Usuario';
 INSERT INTO Huesped VALUES(46324618,'Marcos','Olmedo','20-10-2012');
 REVERT;
---Resultado de ejecucion a traves de usuario: Falló, ya que usuario no tiene permitido hacer inserts
+--Resultado de ejecucion (usuario): Falló, no tiene permitido hacer inserts
 
 --Borrar un huesped como administrador
 EXECUTE AS USER = 'Administrador';
 EXECUTE sp_borrar_huesped @dni = 43789123;
 SELECT * FROM Huesped WHERE Huesped.dni = 43789123;
 REVERT;
---Resultado de ejecución a traves de administrador: Elimina el huesped
+--Resultado de ejecución (administrador): Elimina el huesped
 
 --Obtener edad de un huesped como administrador: Obtiene la edad
 EXECUTE AS USER = 'Administrador';
@@ -64,32 +65,40 @@ REVERT;
 EXECUTE AS USER = 'Usuario';
 SELECT * FROM Reserva;
 REVERT;
---Detalle de la ejecución: Pasó ya que tiene permiso para leer esta tabla
+--Detalle de la ejecución (usuario): Tiene permiso para leer esta tabla
 
 --Obtener los datos de la reserva como administrador
 EXECUTE AS USER = 'Administrador';
 SELECT * FROM Reserva;
 REVERT;
---Detalle de la ejecución: Pasó ya que tiene permisos de lectura
+--Detalle de la ejecución (administrador): Tiene permisos de lectura
 
 --Obtener los datos de los huesped como usuario
 EXECUTE AS USER = 'Usuario';
 SELECT * FROM Huesped;
 REVERT;
---Detalle de la ejecución: Falló, porque no tiene permiso leer esta tabla
+--Detalle de la ejecución (usuario): Falló, no tiene permiso leer esta tabla
 
 EXECUTE AS USER = 'Administrador';
 SELECT * FROM Huesped;
 REVERT;
---Detalle de la ejecución: Paso ya que tiene permisos de lectura
+--Detalle de la ejecución (administrador): Tiene permisos de lectura
 
 --Modificar un huesped como administrador
 EXECUTE AS USER = 'Administrador';
-EXECUTE sp_modificar_huesped @dni = 43789123, @nuevo_nombre = 'Micaela', @nuevo_apellido = 'Fernandez', @nueva_fecha_nacimiento = '2000-03-10';
+EXECUTE sp_modificar_huesped 
+			@dni = 43789123, 
+			@nuevo_nombre = 'Micaela', 
+			@nuevo_apellido = 'Fernandez', 
+			@nueva_fecha_nacimiento = '2000-03-10';
 REVERT;
 
 --Modificar un huesped como usuario
 EXECUTE AS USER = 'Usuario';
-EXECUTE sp_modificar_huesped @dni = 43789123, @nuevo_nombre = 'Juana', @nuevo_apellido = 'Marcori', @nueva_fecha_nacimiento = '2000-03-10';
+EXECUTE sp_modificar_huesped 
+			@dni = 43789123,
+			@nuevo_nombre = 'Juana',
+			@nuevo_apellido = 'Marcori', 
+			@nueva_fecha_nacimiento = '2000-03-10';
 REVERT;
---Resultado de la ejecución: Fallo debido a que usuario no tiene los permisos de modificacion
+--Resultado de la ejecución (usuario): Fallo, no tiene los permisos de modificacion
