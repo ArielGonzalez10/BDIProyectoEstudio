@@ -2,15 +2,15 @@ USE gestion_hotel;
 
 
 -- Creacion de una Vista
-CREATE VIEW VistaReservasHabitaciones AS	--	Creacion de una 'tabla virtual'
+CREATE VIEW VistaReservasHabitaciones AS
 SELECT 
-    R.id_reserva, --	Columnas que apareceran en la vista
+    R.id_reserva, 
     R.dni AS 'DNI', 
     R.fecha_entrada, 
     R.fecha_salida,
     H.nro_habitacion, 
     H.id_tipo_habitacion
-FROM Reserva R	--	Combinaciones de tablas
+FROM Reserva R
 	INNER JOIN Habitacion_reserva HR ON (R.id_reserva = HR.id_reserva)
 	INNER JOIN Habitacion H ON (HR.nro_habitacion = H.nro_habitacion);
 
@@ -61,21 +61,20 @@ SELECT * FROM Habitacion_reserva WHERE id_reserva = 102;
 
 -- Crea la vista con la cláusula SCHEMABINDING
 CREATE VIEW VistaHabitacionesReservas
-WITH SCHEMABINDING	--	Con la cláusula SCHEMABINDING no se puede modificar las tablas, quedan 'bloqueadas'
+WITH SCHEMABINDING
 AS
 SELECT 
-    R.id_reserva,  --	Columnas que apareceran en la vista
+    R.id_reserva, 
     R.dni AS 'DNI', 
     R.fecha_entrada, 
     R.fecha_salida,
     H.nro_habitacion, 
     H.id_tipo_habitacion
-FROM dbo.Reserva R	--	Combinaciones de tablas
+FROM dbo.Reserva R
     INNER JOIN dbo.Habitacion_reserva HR ON (R.id_reserva = HR.id_reserva)
     INNER JOIN dbo.Habitacion H ON (HR.nro_habitacion = H.nro_habitacion);
 
 -- Crear el índice único clusterizado sobre la vista
---	INDEX idx_ indica la creacion del indice en la tabla
 CREATE UNIQUE CLUSTERED INDEX idx_vista_reservas_id_habitacion 
 ON VistaHabitacionesReservas (id_reserva, nro_habitacion);
 
@@ -91,3 +90,5 @@ WHERE id_tipo_habitacion = (
     GROUP BY H2.id_tipo_habitacion
     ORDER BY COUNT(HR2.id_reserva) DESC
 );
+
+
