@@ -162,7 +162,7 @@ Definimos vistas para simplificar las consultas frecuentes y vistas indexadas pa
 ## CAPÍTULO IV: DESARROLLO DEL TEMA / PRESENTACIÓN DE RESULTADOS 
 **ROLES Y PERMISOS**
 ##  CREACION DE LOS ROLES, INICIOS DE SESION E USUARIOS <br>
-![Creacion](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/creación.jpg) <br>
+![Creacion](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/creacion.jpg) <br>
 
 ##  ASIGNACIÓN DE PERMISOS Y ASIGNACION DE USUARIOS A LOS ROLES <br>
 ![Asignaciones](https://github.com/ArielGonzalez10/BDIProyectoEstudio/blob/master/script/tema01_manejodepermisosyroles/desarrollo/asignaciones.jpg) <br>
